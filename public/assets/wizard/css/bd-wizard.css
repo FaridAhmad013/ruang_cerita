@@ -1,0 +1,315 @@
+body {
+  font-family: 'Karla', sans-serif; }
+
+.navbar-light {
+  border-bottom: solid 1px #e9ecf4; }
+  .navbar-light .navbar-brand img {
+    height: 50px; }
+  .navbar-light .navbar-nav .nav-link {
+    padding: 30px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #030303; }
+
+main {
+  min-height: calc(100vh - 102px); }
+
+/* Wizard */
+.wizard .audible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0; }
+
+.wizard .steps {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .wizard .steps > ul {
+    list-style: none;
+    padding-left: 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7b7f89), to(#7b7f89));
+    background-image: linear-gradient(#7b7f89, #7b7f89);
+    background-size: calc(100% - 50px) 4px;
+    background-repeat: no-repeat;
+    background-position: center; }
+    .wizard .steps > ul li a {
+      display: inline-block; }
+    .wizard .steps > ul li span.number {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background-color: #7b7f89;
+      text-align: center;
+      line-height: 50px;
+      color: #fff; }
+    .wizard .steps > ul li.current span.number, .wizard .steps > ul li.done span.number {
+      background-color: #d21c67; }
+
+.wizard .content {
+  margin-bottom: 45px; }
+  .wizard .content .title {
+    display: none; }
+  .wizard .content .bd-wizard-step-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #7b7f89;
+    margin-bottom: 45px; }
+  .wizard .content .section-heading {
+    font-size: 35px;
+    font-weight: bold;
+    color: #030303;
+    margin-bottom: 17px; }
+  .wizard .content p {
+    font-size: 16px;
+    color: #030303; }
+  .wizard .content .purpose-radio {
+    position: relative;
+    display: inline-block; }
+    .wizard .content .purpose-radio .purpose-radio-input {
+      position: absolute;
+      opacity: 0; }
+      .wizard .content .purpose-radio .purpose-radio-input:checked + .purpose-radio-label {
+        border-color: #d21c67; }
+        .wizard .content .purpose-radio .purpose-radio-input:checked + .purpose-radio-label .label-icon {
+          color: #d21c67; }
+          .wizard .content .purpose-radio .purpose-radio-input:checked + .purpose-radio-label .label-icon .label-icon-default {
+            display: none; }
+          .wizard .content .purpose-radio .purpose-radio-input:checked + .purpose-radio-label .label-icon .label-icon-active {
+            display: inline-block; }
+        .wizard .content .purpose-radio .purpose-radio-input:checked + .purpose-radio-label .label-text {
+          color: #d21c67;
+          font-weight: bold; }
+    .wizard .content .purpose-radio .purpose-radio-label {
+      display: -webkit-box;
+      display: flex;
+      width: 196px;
+      height: 184px;
+      max-width: 100%;
+      border: 2px solid #7b7f89;
+      border-radius: 4px;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column;
+      -webkit-box-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+              justify-content: center;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer; }
+      @media (max-width: 575px) {
+        .wizard .content .purpose-radio .purpose-radio-label {
+          width: 100%; } }
+      .wizard .content .purpose-radio .purpose-radio-label .label-icon {
+        font-size: 21px;
+        color: #000000;
+        margin-bottom: 17px;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out; }
+        .wizard .content .purpose-radio .purpose-radio-label .label-icon .label-icon-active {
+          display: none; }
+      .wizard .content .purpose-radio .purpose-radio-label .label-text {
+        font-size: 16px;
+        color: #030303;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out; }
+  .wizard .content .purpose-radios-wrapper {
+    margin-top: 10px;
+    text-align: center; 
+  }
+    .wizard .content .purpose-radios-wrapper .purpose-radio {
+      margin-right: 18px;
+      max-width: calc( 33% - 18px); }
+      @media (max-width: 575px) {
+        .wizard .content .purpose-radios-wrapper .purpose-radio {
+          margin-right: 0;
+          margin-bottom: 18px;
+          width: 100%;
+          max-width: none; } }
+      .wizard .content .purpose-radios-wrapper .purpose-radio:last-child {
+        margin-right: 0; }
+  .wizard .content .form-control {
+    /* padding: 26px 25px;
+    min-height: 50px; */
+    max-width: 550px;
+    border-radius: 4px;
+    border: solid 1px #ececec; }
+    .wizard .content .form-control::-webkit-input-placeholder {
+      color: #919aa3; }
+    .wizard .content .form-control::-moz-placeholder {
+      color: #919aa3; }
+    .wizard .content .form-control:-ms-input-placeholder {
+      color: #919aa3; }
+    .wizard .content .form-control::-ms-input-placeholder {
+      color: #919aa3; }
+    .wizard .content .form-control::placeholder {
+      color: #919aa3; }
+
+.wizard .actions > ul {
+  list-style: none;
+  padding-left: 0;
+  display: -webkit-box;
+  display: flex; }
+
+.wizard .actions li a {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #d21c67;
+  padding: 16px 30px;
+  color: #fff;
+  font-style: 15px;
+  font-weight: bold; }
+
+.wizard .actions li.disabled {
+  display: none; }
+
+.wizard .actions li:not(.disabled) + li, .wizard .actions li:not(:first-child):last-child {
+  margin-left: 15px; }
+
+@media (min-width: 768px) {
+  .wizard.vertical {
+    padding-left: 200px;
+    position: relative;
+    min-height: 450px;
+    margin-top: 30px; 
+    margin-bottom: 100px;
+  }
+    .wizard.vertical .steps {
+      padding-top: 0;
+      padding-bottom: 0;
+      min-height: 480px;
+      position: absolute;
+      left: 0;
+      display: -webkit-box;
+      display: flex; }
+      .wizard.vertical .steps > ul {
+        width: 50px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+                flex-direction: column;
+        background-size: 4px calc(100% - 50px);
+        margin-bottom: 0; }
+        .wizard.vertical .steps > ul li:not(:last-child) {
+          margin-bottom: 24px; } }
+
+/*# sourceMappingURL=bd-wizard.css.map */
+img.service-logo{
+  height: 60px !important;  
+}
+.iframe-dokumen{
+  min-height: 1000px !important;
+  border: solid 1px #aaa;
+  box-shadow: 1px 1px 1px #aaa;
+}
+img.voucher{
+  width: 100%;
+  border-radius: 10px;
+} 
+.voucher-container{
+  position: relative;
+}
+.voucher-label{
+  position: absolute;
+  bottom: 55px;
+  padding-left: 10px;
+  background-color: #fffffe8a;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+.voucher-label p{
+  color: black !important;
+  margin: 0px;
+  padding: 2px;
+}
+#delete-voucher{
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+label.service {
+  width: 100%;
+  font-size: 1rem;
+}
+
+label.service .card .card-header, label.service .card .card-body{
+    padding: 10px !important;
+}
+
+label.service .card{
+    overflow: inherit !important;
+}
+.card-input-element+.card {
+  color: #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+.card-input-element+.card:hover {
+  cursor: pointer;
+}
+
+.card-input-element:checked+.card {
+  border: 2px solid red !important;
+  -webkit-transition: border .3s;
+  -o-transition: border .3s;
+  transition: border .3s;
+}
+
+.card-input-element:checked+.card::after {
+  content: '\e5ca';
+  text-align: end;
+  color: red !important;
+  font-family: 'Material Icons';
+  font-size: 24px;
+  -webkit-animation-name: fadeInCheckbox;
+  animation-name: fadeInCheckbox;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+@-webkit-keyframes fadeInCheckbox {
+  from {
+    opacity: 0;
+    -webkit-transform: rotateZ(-20deg);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: rotateZ(0deg);
+  }
+}
+
+@keyframes fadeInCheckbox {
+  from {
+    opacity: 0;
+    transform: rotateZ(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
+}
+.va_number{
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+}
+.steps {
+  pointer-events: none;
+}
