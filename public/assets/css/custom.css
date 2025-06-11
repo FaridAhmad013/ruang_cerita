@@ -175,9 +175,6 @@ select[readonly].select2-hidden-accessible+.select2-container .select2-selection
     z-index: 999;
 }
 
-body {
-    font-family: 'Lexend Deca', sans-serif !important;
-}
 
 .btn-purple {
     color: #fff;
@@ -340,4 +337,77 @@ h4.text-responsive {
     to {
         transform: rotate(360deg)
     }
+}
+
+.bg-gradient-default{
+  background: #5ED5D9;
+  background: linear-gradient(233deg,rgba(94, 213, 217, 1) 0%, rgba(142, 239, 186, 1) 100%);
+}
+
+.font-lora {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  color: #3C3C3C;
+  font-weight: 400;
+}
+
+.leading-relaxed{
+  line-height: 1.625;
+}
+
+.tracking-wide{
+  letter-spacing: 0.025em;
+}
+
+.text-align-justify{
+  text-align: justify;
+}
+
+.font-weight-bold{
+    font-weight: bold;
+}
+
+.antialiased{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card-new {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-title-spacer-y: 0.5rem;
+    --bs-card-border-width: 0;
+    --bs-card-border-color: ;
+    --bs-card-border-radius: ;
+    --bs-card-box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
+    --bs-card-inner-border-radius: 1rem;
+    --bs-card-cap-padding-y: 0.5rem;
+    --bs-card-cap-padding-x: 1rem;
+    --bs-card-cap-bg: #fff;
+    --bs-card-bg: ;
+    --bs-card-img-overlay-padding: 1rem;
+    --bs-card-group-margin: 0.75rem;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    word-wrap: break-word !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 1px solid rgba(0, 0, 0, .140) !important;
+    border-radius: 1rem !important;
+    box-shadow: none !important;
+}
+
+body {
+    font-family: 'Lora', sans-serif !important;
+}
+
+/* hero */
+.hero-title{
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+.hero-subtitle{
+
 }
