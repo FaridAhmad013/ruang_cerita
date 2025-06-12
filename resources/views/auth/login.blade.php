@@ -1,7 +1,7 @@
 @extends('auth.parent')
 
 @section('content')
-  <div class="row justify-content-end align-items-center">
+  <div class="row justify-content-end align-items-center" style="height: 100vh">
     <div class="col-md-4 p-3" style="margin-right: 3rem">
       <div class="card" style="background: rgba(255, 255, 255, 0.31)">
         <div class="card-body">

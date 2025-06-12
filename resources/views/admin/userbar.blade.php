@@ -14,7 +14,7 @@
             use App\Helpers\AuthCommon;
             $auth = AuthCommon::user();
         @endphp
-        <span class="mb-0 text-sm  font-weight-bold text-white" style="white-space: nowrap">{{ @$auth->nama_depan ?? ' ' }} {{ @$auth->nama_belakang ?? ' ' }} ( {{ @$auth->username ?? ' ' }} )</span>
+        <span class="mb-0 text-sm  font-weight-bold text-white" style="white-space: nowrap">{{ @$auth->nama_depan ?? ' ' }} {{ @$auth->nama_belakang ?? ' ' }}</span>
       </div>
     </div>
   </a>

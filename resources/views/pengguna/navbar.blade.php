@@ -24,7 +24,7 @@
       </div>
 
       <ul class="navbar-nav ml-lg-auto">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link nav-link-icon" href="#">
             <i class="ni ni-favourite-28"></i>
             <span class="nav-link-inner--text d-lg-none">Discover</span>
@@ -35,12 +35,12 @@
             <i class="ni ni-notification-70"></i>
             <span class="nav-link-inner--text d-lg-none">Profile</span>
           </a>
-        </li>
+        </li> --}}
         @if ($user)
           <li class="nav-item dropdown">
             <a class="nav-link nav-link-icon" href="#" id="navbar-profile-icon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="ni ni-settings-gear-65"></i>
-              <span class="nav-link-inner--text d-lg-none">Nama Pengguna</span>
+              <i class="fas fa-user-circle"> </i> {{ @$user->nama_depan }} {{ @$user->nama_belakang }}
+              <span class="nav-link-inner--text d-lg-none">{{ @$user->nama_depan }} {{ @$user->nama_belakang }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-profile-icon">
               <a class="dropdown-item" href="#">Action</a>
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-icon font-weight-bold" href="#">
+            <a class="nav-link nav-link-icon font-weight-bold" href="{{ route('auth.register') }}">
               Register
             </a>
           </li>

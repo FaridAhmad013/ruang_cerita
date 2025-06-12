@@ -121,7 +121,6 @@ class AuthController extends Controller
         $formData['password'] = bcrypt($formData['password']);
         $formData['status'] = true;
         $formData['role_id'] = 2;
-        dd($formData);
 
         try {
             User::create($formData);
