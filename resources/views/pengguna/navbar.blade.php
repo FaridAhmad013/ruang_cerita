@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-horizontal navbar-expand-lg navbar-light bg-white">
   <div class="container">
-    <a class="navbar-brand font-weight-bold" href="#">Ruang Cerita</a>
+    <a class="navbar-brand font-weight-bold" href="#"><img src="{{ asset('assets/img/icons/ruang-cerita.png') }}" class="navbar-brand-img" alt="..." style="width: 100%;scale:2;object-fit:contain;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

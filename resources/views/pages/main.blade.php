@@ -16,6 +16,12 @@
   <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
   <!-- Page plugins -->
   <style>
+    @keyframes example {
+        0%   {background-color: red;}
+        25%  {background-color: yellow;}
+        50%  {background-color: blue;}
+        100% {background-color: green;}
+    }
 
   </style>
   <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -49,6 +55,7 @@
   {{-- Noty --}}
   <link href="{{ asset('assets/vendor/noty/noty.css') }}" rel="stylesheet">
   <link href="{{ asset('fonts/lexend_deca.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   {{-- check app debug false --}}
   @if(config('app.debug') == false)
     @laravelPWA
@@ -74,27 +81,27 @@
       <section class="container">
         <div class="p-3 position-relative">
           <div class="position-absolute left-0 top-0" style="z-index: 1;">
-            <img src="{{ asset('assets/img/theme/question-2.png') }}" style="object-fit: cover; height: 50px; width: 100%" alt="" srcset="">
+            <img class="jedag-jedug" src="{{ asset('assets/img/theme/question-2.png') }}" style="object-fit: cover; height: 50px; width: 100%" alt="" srcset="">
           </div>
           <div class="card card-new">
             <div class="card-body">
               <h1 class="font-lora font-weight-bold tracking-wide text-center">Bagaimana Caranya?</h1>
               <div class="row justify-content-around mt-3">
-                <div class="col-3">
+                <div class="col-3" data-aos="fade-right" data-aos-duration="800">
                   <img src="{{ asset('assets/img/icons/calendar.png')}}" style="width: 80px; object-fit: cover">
                   <h3 class="leading-relaxed tracking-wide font-lora my-2 font-weight-bold">Sapaan Harian</h3>
                   <p class="leading-relaxed tracking-wide font-lora text-justify">
                     Setiap hari, kamu akan ditemani 10 pertanyaan ringan untuk membantumu memulai cerita.
                   </p>
                 </div>
-                <div class="col-3">
+                <div class="col-3" data-aos="fade-up" data-aos-duration="800">
                   <img src="{{ asset('assets/img/icons/chat.png')}}" style="width: 80px; object-fit: cover">
                   <h3 class="leading-relaxed tracking-wide font-lora my-2 font-weight-bold">Tuang Isi Hati</h3>
                   <p class="leading-relaxed tracking-wide font-lora text-justify">
                     Ceritamu adalah milikmu seutuhnya. Kami menjaga privasimu dengan serius. Ruang hatimu aman bersama kami.
                   </p>
                 </div>
-                <div class="col-3">
+                <div class="col-3" data-aos="fade-left" data-aos-duration="800">
                   <img src="{{ asset('assets/img/icons/idea.png')}}" style="width: 80px; object-fit: cover">
                   <h3 class="leading-relaxed tracking-wide font-lora my-2 font-weight-bold">Temukan Pola Perasaanmu</h3>
                   <p class="leading-relaxed tracking-wide font-lora text-justify">
@@ -110,13 +117,13 @@
       <section class="container">
         <div class="p-3 position-relative">
           <div class="position-absolute left-0 top-0" style="z-index: 1;">
-            <img src="{{ asset('assets/img/theme/lock.png') }}" style="object-fit: cover; height: 50px; width: 100%" alt="" srcset="">
+            <img src="{{ asset('assets/img/theme/lock.png') }}" class="zig-zag" style="object-fit: cover; height: 50px; width: 100%;" alt="" srcset="">
           </div>
           <div class="card card-new">
             <h1 class="font-lora font-weight-bold tracking-wide text-center my-4">Ruang yang Benar-Benar Aman.</h1>
             <div class="card-body">
               <div class="row mb-3">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-right" data-aos-duration="800">
                   <div class="card card-new overflow-hidden mt-4">
                     <img class="card-img-top" src="{{ asset('assets/img/theme/chatingan.jpg') }}">
                     <div class="card-body">
@@ -127,7 +134,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800">
                   <div class="card card-new overflow-hidden">
                     <img class="card-img-top" src="{{ asset('assets/img/theme/personal-data-2.png') }}">
                     <div class="card-body">
@@ -138,7 +145,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-left" data-aos-duration="800">
                   <div class="card card-new overflow-hidden mt-4">
                     <img class="card-img-top" src="{{ asset('assets/img/theme/design(2).png') }}">
                     <div class="card-body">
@@ -209,7 +216,26 @@
   <script src="{{ asset('assets/js/demo.min.js') }}"></script>
   {{-- Global js --}}
   <script src="{{ asset('js/global.js') }}"></script>
-  <script></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    AOS.init();
+    var typed = new Typed('.hero-title', {
+      strings: ['Ada hari yang rasanya berat untuk dilewati sendirian?'],
+      typeSpeed: 50,
+      onComplete: function(self) {
+        $('.typed-cursor.typed-cursor--blink').hide()
+        new Typed('.hero-subtitle', {
+          strings: ['Ruang Cerita adalah ruang aman untuk membantumu mengurai pikiran dan memahami perasaan.'],
+          typeSpeed: 50,
+          onComplete: function(){
+            $('.typed-cursor.typed-cursor--blink').hide()
+          }
+        });
+      }
+    });
+
+  </script>
 </body>
 
 </html>

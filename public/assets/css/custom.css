@@ -435,3 +435,27 @@ body {
   position: relative;
   /* z-index: 1; */
 }
+
+.jedag-jedug{
+  animation: jedag-jedug-keyframes 1s linear infinite alternate;
+}
+@keyframes jedag-jedug-keyframes {
+    from{
+      transform: scale(1);
+    }
+    to{
+      transform: scale(1.2);
+    }
+}
+
+.zig-zag{
+  animation: zig-zag-keyframes 1s infinite alternate;
+}
+@keyframes zig-zag-keyframes {
+    0%{
+        transform:  rotate(90deg);
+    }
+    100%{
+        transform:  rotate(-90deg);
+    }
+}
