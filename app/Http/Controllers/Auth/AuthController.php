@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Helpers\AuthCommon;
 use App\Helpers\ConstantUtility;
 use App\Helpers\ResponseConstant;
+use App\Helpers\Util;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
@@ -71,6 +72,71 @@ class AuthController extends Controller
             'status' => true,
             'message' => 'Login Berhasil'
         ]);
+    }
+
+    public function register(){
+        return view('auth.register');
+    }
+
+    public function register_process(Request $request)
+    {
+        $rules = [
+            'username' => 'required|unique:users|regex:/^(?!.*[_.]{2})(?![_.])[a-zA-Z0-9._]{3,20}(?<![_.])$/',
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+
+        ];
+
+        $message = [
+            'username.required' => 'Kolom Username tidak boleh kosong',
+            'username.unique' => 'Username sudah digunakan',
+            'username.regex' => 'Username hanya boleh berisi huruf, angka, titik, dan underscore tanpa simbol berurutan atau di awal/akhir.',
+            'nama_depan.required' => 'Kolom Nama Depan tidak boleh kosong',
+            'nama_belakang.required' => 'Kolom Nama Belakang tidak boleh kosong',
+            'email.required' => 'Kolom Email tidak boleh kosong',
+            'email.unique' => 'Email sudah digunakan',
+            'password.required' => 'Kolom Password tidak boleh kosong',
+            'password.confirmed' => 'Kolom Password tidak sama',
+
+        ];
+        $request->validate($rules, $message);
+
+        if(!Util::isPasswordValid($request->password, $request->username)){
+            return response([
+                'status' => false,
+                'message' => 'Password harus terdiri dari setidaknya satu angka (0-9), satu huruf kecil (a-z), satu huruf besar (A-Z), satu karakter khusus (@, #, $, %, ^, &, +, =, !), setidaknya berjumlah 8 dan tidak mengandung username'
+            ], 400);
+        }
+
+        $formData = $request->only([
+            'username',
+            'nama_depan',
+            'nama_belakang',
+            'email',
+            'password',
+        ]);
+
+        $formData['password'] = bcrypt($formData['password']);
+        $formData['status'] = true;
+        $formData['role_id'] = 2;
+        dd($formData);
+
+        try {
+            User::create($formData);
+
+            return response([
+                'status' => true,
+                'message' => 'Berhasil Menambahkan Data'
+            ]);
+        } catch (\Throwable $th) {
+            return response([
+                'status' => false,
+                'message' => 'Gagal Menambahkan Data'
+            ], 400);
+        }
+
     }
 
     public function logout()

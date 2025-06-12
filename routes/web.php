@@ -38,6 +38,7 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
 
     Route::prefix('register')->group(function(){
         Route::get('/', [AuthController::class, 'register'])->name('auth.register');
+        Route::post('/register_process', [AuthController::class, 'register_process'])->name('auth.register_process');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');

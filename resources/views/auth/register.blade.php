@@ -2,29 +2,56 @@
 
 @section('content')
   <div class="row justify-content-end align-items-center">
-    <div class="col-md-4 p-3" style="margin-right: 3rem">
+    <div class="col-md-5 p-3" style="margin-right: 3rem">
       <div class="card" style="background: rgba(255, 255, 255, 0.31)">
         <div class="card-body">
+
           <h1 class="text-center mb-3 font-lora" style="font-size: 2rem; font-weight: bold; color: white">Ruang Cerita</h1>
           <hr>
-          <h4>Sign in to account</h4>
-          <p>Enter your username & password to login</p>
+          <h4>Sign up</h4>
           <div id="response_container"></div>
-          <form action="{{ route('auth.login_process') }}" method="post" id="myForm">
+          <form action="{{ route('auth.register_process') }}" method="post" id="myForm">
             @csrf
+
+            <div class="row flex-wrap">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nama_depan">Nama Depan</label>
+                  <input type="text" name="nama_depan" id="nama_depan" class="form-control" autocomplete="off">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nama_belakang">Nama Belakang</label>
+                  <input type="text" name="nama_belakang" id="nama_belakang" class="form-control" autocomplete="off">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" autocomplete="off">
+            </div>
 
             <div class="form-group">
               <label for="username">Username</label>
               <input type="text" name="username" id="username" class="form-control" autocomplete="off">
             </div>
+
+
             <div class="form-group">
-              <label for="username">Password</label>
+              <label for="password">Password</label>
               <input type="password" name="password" id="password" class="form-control" autocomplete="off">
             </div>
-            <button type="button" class="btn btn-default btn-block" onclick="save()">Login</button>
+
+            <div class="form-group">
+              <label for="password_confirmation">Ulangi Password</label>
+              <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" autocomplete="off">
+            </div>
+            <button type="button" class="btn btn-default btn-block" onclick="save()">Register</button>
           </form>
           <div class="form-group mt-3">
-            <a href="{{ route('auth.register') }}" class="text-dark">Belum Punya Akun?</a>
+            <a href="{{ route('auth.login') }}" class="text-dark">Sudah Punya Akun?</a>
           </div>
         </div>
       </div>
@@ -59,7 +86,7 @@
           if($('[name="_method"]').val() == undefined) el_form[0].reset()
 
           setTimeout(() => {
-            window.location.href = `{{ route('dashboard.index') }}`
+            window.location.href = `{{ route('auth.login') }}`
           }, 1000);
         }
       }).fail((xhr) => {
