@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-horizontal navbar-expand-lg navbar-light bg-white">
   <div class="container">
-    <a class="navbar-brand" href="#">Ruang Cerita</a>
+    <a class="navbar-brand font-weight-bold" href="#">Ruang Cerita</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,18 +36,31 @@
             <span class="nav-link-inner--text d-lg-none">Profile</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" id="navbar-profile-icon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-settings-gear-65"></i>
-            <span class="nav-link-inner--text d-lg-none">Nama Pengguna</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-profile-icon">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+        @if ($user)
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-link-icon" href="#" id="navbar-profile-icon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="ni ni-settings-gear-65"></i>
+              <span class="nav-link-inner--text d-lg-none">Nama Pengguna</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-profile-icon">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        @else
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon font-weight-bold" href="{{ route('auth.login') }}">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon font-weight-bold" href="#">
+              Register
+            </a>
+          </li>
+        @endif
       </ul>
 
     </div>

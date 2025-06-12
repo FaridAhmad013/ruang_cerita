@@ -8446,7 +8446,7 @@ a.close.disabled
 }
 
 .header *{
-    color: #65a30d !important;
+    color: white !important;
 }
 
 a.bg-primary:hover,
@@ -21827,7 +21827,7 @@ textarea[resize='horizontal']
     padding-right: 1rem;
     padding-left: 1rem;
     border-radius: 0.375rem;
-    background: #65a30d;
+    background: #c9c9c9;
     color: white;
     font-weight: bold;
 }

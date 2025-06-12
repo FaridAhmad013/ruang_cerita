@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Sistem Manajemen Keamanan Informasi">
-  <meta name="author" content="Digital Amore Kriyanesia">
+  <meta name="description" content="Ruang Cerita by Farid Ahmad Fadhilah">
+  <meta name="author" content="Farid Ahmad Fadhilah">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>SMKI PERBARINDO | @yield('title')</title>
+  <title>Ruang Cerita | @yield('title')</title>
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
   <!-- Fonts -->
@@ -60,20 +60,19 @@
   @include('admin.sidebar')
   <!-- Main content -->
   <div class="main-content" id="panel">
-    <div class="header-notif header-notif-warning" id="hnotif" style="display: none;">
-
-    </div>
-    <!-- Topnav -->
-    @include('admin.navbar')
-    @php
-    $auth = @\App\Helpers\AuthCommon::user();
-    @endphp
     <!-- Header -->
-    <div class="header pb-6 bg-primary">
-      <div class="container-fluid">
-        <div class="header-body">
-          <div class="row align-items-center py-4">
-            @yield('breadcrum')
+    <div class="bg-image-container">
+      @include('admin.navbar')
+      @php
+      $auth = @\App\Helpers\AuthCommon::user();
+      @endphp
+      <!-- Header -->
+      <div class="header pb-6 text-white" style="background: transparent;">
+        <div class="container-fluid">
+          <div class="header-body">
+            <div class="row align-items-center py-4">
+              @yield('breadcrum')
+            </div>
           </div>
         </div>
       </div>
@@ -153,9 +152,7 @@
   <script src="{{ asset('assets/vendor/noty/noty.js') }}" type="text/javascript"></script>
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.1.0') }}"></script>
-  {{-- Before send xhr --}}
-  <script src="{{ asset('js/xhr_custom.js') }}?v=1.0.1"></script>
-  <!-- Demo JS - remove this in your project -->
+    <!-- Demo JS - remove this in your project -->
   <script src="{{ asset('assets/js/demo.min.js') }}"></script>
   {{-- Global js --}}
   <script src="{{ asset('js/global.js') }}"></script>
@@ -166,10 +163,6 @@
     function back_button(params){
       window.location.href = params
     }
-
-    $(document).ready(function(){
-        Ryuna.check_match_ip()
-    })
 
     try {
       $('.flatpickr_month').flatpickr({

@@ -28,7 +28,7 @@ class MKelengkapanDokumenDataTable extends DataTable
                 $html = '';
 
                 $role = AuthCommon::user()->role ?? null;
-                if(in_array($role->name, ['Web Admin', 'Admin', 'Admin SMKI', 'Web Admin Perbarindo'])){
+                if(in_array($role->role, ['Web Admin', 'Admin', 'Admin SMKI', 'Web Admin Perbarindo'])){
                     $html = '<div class="btn-group btn-group-sm">';
                     $html .= '<button onclick="destroy('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Hapus"><i class="fas fa-trash"></i></button>';
                     $html .= '<button onclick="edit('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Ubah"><i class="fas fa-pen"></i></button>';

@@ -13,14 +13,13 @@
 
 </style>
 
-<nav class="navbar navbar-top navbar-expand navbar-dark border-bottom bg-primary">
+<nav class="navbar navbar-top navbar-expand" style="background: transparent;">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div style="width: 100%;display: flex;">
         <!-- Search form -->
         {{-- @include('admin.searchform') --}}
         <!-- Navbar links -->
-        <ul class="navbar-nav align-items-center">
+        <ul class="navbar-nav align-items-center ml-md-auto">
           <li class="nav-item d-xl-none">
             <!-- Sidenav toggler -->
             <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
@@ -31,10 +30,13 @@
               </div>
             </div>
           </li>
+          {{-- @include('admin.searchbar') --}}
+          {{-- @include('admin.notification') --}}
+          {{-- @include('admin.shortcut') --}}
         </ul>
-    </div>
-    @include('admin.userbar')
-
+        <ul class="navbar-nav align-items-center ml-auto mr-md-0">
+          @include('admin.userbar')
+        </ul>
     </div>
   </div>
 </nav>

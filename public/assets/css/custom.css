@@ -411,3 +411,27 @@ body {
 .hero-subtitle{
 
 }
+
+.bg-image-container {
+  background: url('./../img/theme/black-gray-liquid.jpg') no-repeat center top;
+  background-size: cover;
+  position: relative;
+}
+
+/* Jika gambar terlalu terang dan teks sulit dibaca, tambahkan overlay gelap */
+.bg-image-container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0,0,0,0.3); */
+  z-index: 0;
+}
+
+/* Pastikan konten tetap berada di atas overlay */
+.bg-image-container > * {
+  position: relative;
+  /* z-index: 1; */
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuthCommon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,7 @@ class MainController extends Controller
 
         $module = $this->module;
         $module_name = $this->module_name;
-        return view('pages.main', compact('allow', 'module', 'module_name'));
+        $user = AuthCommon::user() ?? null;
+        return view('pages.main', compact('allow', 'module', 'module_name', 'user'));
     }
 }

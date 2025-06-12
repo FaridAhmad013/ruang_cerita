@@ -21,7 +21,7 @@ class Menu
 
     public function item($title, $icon, $url, $isActive, $assign)
     {
-        if (is_array($assign) && in_array(AuthCommon::user()->role->name, $assign)) {
+        if (is_array($assign) && in_array(AuthCommon::user()->role->role, $assign)) {
             $this->html .= '<li class="nav-item">
                 <a class="nav-link ' . ($isActive ? 'active' : '') . '" href="' . url($url) . '">
                     <i class="' . $icon . '"></i>
@@ -36,7 +36,7 @@ class Menu
     public function divinder($title, $assign)
     {
         if (is_array($assign)) {
-            if (in_array(AuthCommon::user()->role->name, $assign)) {
+            if (in_array(AuthCommon::user()->role->role, $assign)) {
                 $this->html .= '<hr class="my-3">
                 <h6 class="navbar-heading p-0 text-muted">
                     <span class="docs-normal">' . $title . '</span>

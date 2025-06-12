@@ -4,8 +4,7 @@
     <div class="media align-items-center">
       <span>
         @php
-          $avatar = null;
-          $avatar = $avatar != null ? $avatar : asset('img/default-avatar.png');
+          $avatar = asset('img/default-avatar.png');
         @endphp
         <img class="avatar avatar-sm rounded-circle" style="object-fit: cover" alt="Image placeholder"
           src="{{ $avatar }}">
@@ -15,7 +14,7 @@
             use App\Helpers\AuthCommon;
             $auth = AuthCommon::user();
         @endphp
-        <span class="mb-0 text-sm  font-weight-bold text-white" style="white-space: nowrap">{{ @$auth->first_name ?? ' ' }} {{ @$auth->last_name ?? ' ' }} ( {{ @$auth->username ?? ' ' }} )</span>
+        <span class="mb-0 text-sm  font-weight-bold text-white" style="white-space: nowrap">{{ @$auth->nama_depan ?? ' ' }} {{ @$auth->nama_belakang ?? ' ' }} ( {{ @$auth->username ?? ' ' }} )</span>
       </div>
     </div>
   </a>

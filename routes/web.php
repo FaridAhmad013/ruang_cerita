@@ -6,6 +6,7 @@ use App\Http\Middleware\RyunnaAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manage\{UserController, KelolaDokumenController};
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,24 @@ Route::get('timezone', function () {
 });
 
 Route::get('/', [MainController::class, 'index'])->name('pengguna.index');
-Route::prefix('login')->group(function(){
-    Route::get('/', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/login_process', [AuthController::class, 'login_process'])->name('auth.login_process');
+Route::namespace('App\Http\Controllers\Auth')->group(function () {
+    Route::prefix('login')->group(function(){
+        Route::get('/', [AuthController::class, 'login'])->name('auth.login');
+        Route::post('/login_process', [AuthController::class, 'login_process'])->name('auth.login_process');
+    });
+
+    Route::prefix('register')->group(function(){
+        Route::get('/', [AuthController::class, 'register'])->name('auth.register');
+    });
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
 // Page
 Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/edit_profile', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
+    Route::put('/profile/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.updatepassword');
 });

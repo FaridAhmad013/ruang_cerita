@@ -4,7 +4,7 @@
     background-size: cover;
     background-position: inherit;
     background-repeat: no-repeat;
-    height: 600px;
+    height: 650px;
   ">
   {{-- <div class="mask"> --}}
   <div class="mask" style="background-color: rgba(0, 0, 0, 0.1);">
