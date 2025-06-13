@@ -21,8 +21,21 @@ class DashboardController extends Controller
     {
         if (!in_array(AuthCommon::user()->role->role, ['Admin','Pengguna'])) abort('403');
 
-        $role = AuthCommon::user()->role ?? null;
+        $user = AuthCommon::user();
+        $role = $user->role ?? null;
+        $waktu_sekarang = Carbon::now()->format('H:i');
 
-        return view('pages.dashboard.v1', compact('role'));
+        $nama_lengkap = @$user->nama_depan.' '.@$user->nama_belakang;
+        if ($waktu_sekarang >= '05:00' && $waktu_sekarang < '10:00') {
+            $ucapan = "Selamat Pagi, $nama_lengkap.";
+        } elseif ($waktu_sekarang >= '10:00' && $waktu_sekarang < '15:00') {
+            $ucapan = "Bagaimana kabarmu siang ini, $nama_lengkap?";
+        } elseif ($waktu_sekarang >= '15:00' && $waktu_sekarang < '18:00') {
+            $ucapan = "Semoga harimu berjalan baik, $nama_lengkap.";
+        } else {
+            $ucapan = "Selamat beristirahat, $nama_lengkap.";
+        }
+
+        return view('pages.dashboard.v1', compact('role', 'ucapan'));
     }
 }
