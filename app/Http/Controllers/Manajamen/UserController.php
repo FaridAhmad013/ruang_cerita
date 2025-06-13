@@ -8,6 +8,7 @@ use App\Helpers\ResponseConstant;
 use App\Helpers\Util;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -297,6 +298,21 @@ class UserController extends Controller
                 "message" => ResponseConstant::RM_DELETE_FAILED,
                 "error" => $th->getMessage()
             ], 400);
+        }
+    }
+
+    public function unblock($id)
+    {
+        try {
+            User::findOrFail($id)->update([
+                'auth_attemp' => 0
+            ]);
+
+            return response(['status' => true, 'message' => 'Berhasil membuka blokir pengguna.']);
+        } catch (ModelNotFoundException $e) {
+            return response(['status' => false, 'message' => ResponseConstant::RM_USER_NOT_FOUND], 400);
+        } catch (\Throwable $th) {
+            return response(['status' => false, 'message' => $th->getMessage()], 400);
         }
     }
 

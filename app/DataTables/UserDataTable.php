@@ -31,6 +31,10 @@ class UserDataTable extends DataTable
                 $html .= '<button onclick="edit('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Ubah"><i class="fas fa-pen"></i></button>';
                 $html .= '<button onclick="destroy('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Hapus"><i class="fas fa-trash"></i></button>';
                 $html .= '</div>';
+
+                if ($data->auth_attemp > 2) {
+                    $html .= '<button onclick="unblock(' . $data->id . ')" type="button" class="btn btn-sm btn-danger ml-1" title="UNBLOCK">UNBLOCK</button>';
+                }
                 return $html;
             })
             ->editColumn('username', function($item){

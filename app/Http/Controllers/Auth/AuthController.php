@@ -37,7 +37,7 @@ class AuthController extends Controller
         ];
         $request->validate($rules, $message);
 
-        $result =  User::where('username', $request->username)->select('id', 'username', 'nama_depan', 'nama_belakang', 'email', 'password',  'status', 'role_id')->first();
+        $result =  User::where('username', $request->username)->select('id', 'username', 'nama_depan', 'nama_belakang', 'email', 'password', 'auth_attemp', 'status', 'role_id')->first();
         if(!$result){
             return response([
                 'status' => false,
@@ -45,12 +45,19 @@ class AuthController extends Controller
             ], 400);
         }
 
+        $auth_attemp = intval($result->auth_attemp ?? 0) + 1;
         if(!Hash::check($request->password, $result->password)){
-            $auth_attemp = intval($result->auth_attemp ?? 0) + 1;
             User::where('username', $request['username'])->update(['auth_attemp' => $auth_attemp]);
             return response([
                 'status' => false,
                 'message' => ResponseConstant::RM_INVALID_USERNAME_PASSWORD
+            ], 400);
+        }
+
+        if($auth_attemp > 2){
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_USER_ACCOUNT_BLOCKED
             ], 400);
         }
 

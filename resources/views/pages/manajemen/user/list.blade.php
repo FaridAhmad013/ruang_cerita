@@ -60,7 +60,8 @@
     edit: `{{ route($module.'.edit', ':id') }}`,
     show: `{{ route($module.'.show', ':id') }}`,
     change_status: `{{ route($module.'.change_status', ':id') }}`,
-    delete: `{{ route($module.'.destroy', ':id') }}`
+    delete: `{{ route($module.'.destroy', ':id') }}`,
+    unblock: `{{ route($module.'.unblock', ':id') }}`,
   }
 
   let _url_select2 = {
@@ -166,6 +167,47 @@
       scrollX: true
     });
   })
+
+  function unblock(id){
+    Swal.fire({
+      title: 'Buka Blokir Pengguna?',
+      text: "",
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#007bff',
+      confirmButtonText: 'Ya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.value) {
+        Ryuna.blockUI()
+        $.ajax({
+          url: _url.unblock.replace(':id', id),
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          type: 'POST',
+        }).done((res) => {
+          Swal.fire({
+            title: res.message,
+            text: '',
+            type: 'success',
+            confirmButtonColor: '#007bff'
+          })
+          Ryuna.unblockUI()
+          table.draw()
+        }).fail((xhr) => {
+          Swal.fire({
+            title: xhr.responseJSON.message,
+            text: '',
+            type: 'error',
+            confirmButtonColor: '#007bff'
+          })
+          Ryuna.unblockUI()
+        })
+      }
+    })
+  }
 
   function create(){
     Ryuna.blockUI()

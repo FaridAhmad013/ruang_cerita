@@ -35,7 +35,7 @@
             ])
             ->start_group()
             ->item('Pengguna', 'fas fa-user', 'admin/manajemen/user', Request::is('admin/manajemen/user'), ['Admin'])
-            ->item('Role', 'fas fa-user', 'admin/manajemen/role', Request::is('admin/manajemen/role'), ['Admin'])
+            ->item('Role', 'fas fa-building', 'admin/manajemen/role', Request::is('admin/manajemen/role'), ['Admin'])
             ->end_group();
 
         $menu = $obj_menu->to_html();

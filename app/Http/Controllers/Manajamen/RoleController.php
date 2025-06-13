@@ -29,7 +29,7 @@ class RoleController extends Controller
         $allow = json_encode($this->allow);
 
         $group = "Manajemen";
-        $icon = "fas fa-users";
+        $icon = "fas fa-building";
         $module = $this->module;
         $module_name = $this->module_name;
         return view('pages.' . $this->folder . '.list', compact('allow', 'group', 'icon', 'module', 'module_name'));

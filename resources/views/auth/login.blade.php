@@ -21,10 +21,10 @@
               <label for="username">Password</label>
               <input type="password" name="password" id="password" class="form-control" autocomplete="off">
             </div>
-            <button type="button" class="btn btn-default btn-block" onclick="save()">Login</button>
+            <button type="button" class="btn btn-default btn-block" id="btn-submit" onclick="save()">Login</button>
           </form>
           <div class="form-group mt-3">
-            <a href="{{ route('auth.register') }}" class="text-dark">Belum Punya Akun?</a>
+            <a href="{{ route('auth.register') }}" class="text-dark font-weight-bold">Belum Punya Akun?</a>
           </div>
         </div>
       </div>
@@ -36,6 +36,7 @@
   <script>
     function save(){
       $('#response_container').empty();
+      $('#btn-submit').prop('disabled', true)
       Ryuna.blockElement('.modal-content');
       let el_form = $('#myForm')
       let target = el_form.attr('action')
@@ -59,10 +60,12 @@
           if($('[name="_method"]').val() == undefined) el_form[0].reset()
 
           setTimeout(() => {
+            $('#btn-submit').prop('disabled', false)
             window.location.href = `{{ route('dashboard.index') }}`
           }, 1000);
         }
       }).fail((xhr) => {
+        $('#btn-submit').prop('disabled', false)
         if(xhr?.status == 422){
           let errors = xhr.responseJSON.errors
           let html = '<div class="alert alert-danger alert-dismissible fade show">'

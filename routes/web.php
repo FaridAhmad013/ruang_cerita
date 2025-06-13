@@ -60,6 +60,7 @@ Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
         ]);
 
         Route::prefix('user')->group(function(){
+            Route::post('unblock/{id}', [UserController::class, 'unblock'])->name('user.unblock');
             Route::post('change_status/{id}', [UserController::class, 'change_status'])->name('user.change_status');
         });
 
