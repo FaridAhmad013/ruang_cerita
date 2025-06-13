@@ -13,7 +13,7 @@
   </div>
 </div>
 
-@if (!$data)
+@if (!@$data)
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" class="form-control" autocomplete="off">
@@ -26,7 +26,7 @@
   <input type="email" name="email" id="email" class="form-control" autocomplete="off" value="{{ @$data->email }}">
 </div>
 
-@if (!$data)
+@if (!@$data)
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" id="password" class="form-control" autocomplete="off" value="{{ @$data->password }}">
