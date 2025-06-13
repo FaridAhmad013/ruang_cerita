@@ -42,7 +42,7 @@
           </div>
           <div class="row mb-3">
             <div class="col-sm-6 text-responsive">Nama</div>
-            <div class="col-sm-6 text-responsive bold">{{ @$auth->first_name ?? '-' }} {{ @$auth->last_name ?? '-' }}</div>
+            <div class="col-sm-6 text-responsive bold">{{ @$auth->nama_depan ?? '-' }} {{ @$auth->nama_belakang ?? '-' }}</div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-6 text-responsive">Email</div>
@@ -50,7 +50,7 @@
           </div>
           <div class="row mb-3">
             <div class="col-sm-6 text-responsive">Peran</div>
-            <div class="col-sm-6 text-responsive bold">{{ @$auth->role?->name ?? '-' }}</div>
+            <div class="col-sm-6 text-responsive bold">{{ @$auth->role?->role ?? '-' }}</div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-6 text-responsive">Status Pengguna</div>
@@ -98,10 +98,10 @@
           <form id="form_edit_profile">
             <div class="form-group row">
               <div class="col-md-6">
-                <label for="first_name">Nama Depan</label><input type="text" name="first_name" id="first_name" class="form-control" value="{{ @$auth->first_name }}">
+                <label for="first_name">Nama Depan</label><input type="text" name="first_name" id="first_name" class="form-control" value="{{ @$auth->nama_depan }}">
               </div>
               <div class="col-md-6">
-                <label for="last_name">Nama Belakang</label><input type="text" name="last_name" id="last_name" class="form-control" value="{{ @$auth->last_name }}">
+                <label for="last_name">Nama Belakang</label><input type="text" name="last_name" id="last_name" class="form-control" value="{{ @$auth->nama_belakang }}">
               </div>
             </div>
 

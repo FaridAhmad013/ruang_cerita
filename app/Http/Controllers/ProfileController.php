@@ -9,6 +9,7 @@ use App\Helpers\LogCommon;
 use App\Helpers\ResponseConstant;
 use App\Helpers\Util;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,11 +38,10 @@ class ProfileController extends Controller
         ]);
 
         $form = $request->only(['first_name', 'last_name', 'email']);
-        $form['user_id'] = $auth->id;
         $form['username'] = $auth->username;
         $form['id'] = $auth->id;
 
-        if (!DB::table('aauth_users')->where('id', $form['id'])->first()) {
+        if (!User::where('id', $form['id'])->first()) {
             return response([
                 "status" => false,
                 "message" => "User Tidak Ditemukan",
@@ -50,9 +50,9 @@ class ProfileController extends Controller
         }
 
 
-        $update = DB::table('aauth_users')->where('id', $form['id'])->update([
-            'first_name' => $form['first_name'],
-            'last_name' => $form['last_name'],
+        $update = User::where('id', $form['id'])->update([
+            'nama_depan' => $form['first_name'],
+            'nama_belakang' => $form['last_name'],
             'email' => $form['email'],
             // 'last_update' => Carbon::now(),
         ]);
@@ -93,7 +93,7 @@ class ProfileController extends Controller
         $id = AuthCommon::user()->id;
         $formData['konfirmasi_password'] = $request->password_baru_confirmation;
 
-        $result = DB::table('aauth_users')->where('id', $id)->select('id', 'username', 'pass')->first();
+        $result = User::where('id', $id)->select('id', 'username', 'password')->first();
         if(!$result){
             return redirect()->route('profile.index')->with(['change_pas' => ' ', 'error' => ResponseConstant::RM_USER_NOT_FOUND]);
         }
@@ -102,9 +102,9 @@ class ProfileController extends Controller
             return redirect()->route('profile.index')->with(['change_pas' => ' ', 'error' => 'Password Lama Salah']);
         }
 
-        $result = DB::table('aauth_users')->where('id', $id)->update([
-            'last_update' => Carbon::now(),
-            'pass' =>  EncryptionHelper::encPassword($request->password_baru, $id)
+        $result = User::where('id', $id)->update([
+            'updated_at' => Carbon::now(),
+            'password' =>  bcrypt($request->password_baru)
         ]);
 
         if($result){
