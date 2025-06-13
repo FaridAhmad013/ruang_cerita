@@ -191,21 +191,15 @@ class Util
     return $formattedErrors;
   }
 
-  public static function status_dokumen($data, $id = '')
+  public static function status($data)
   {
     $html = '';
     switch ($data) {
-      case ConstantUtility::STATUS_NEED_APPROVAL:
-        $html = '<span class="badge text-white bg-yellow">Menunggu Persetujuan</span>';
+      case '1':
+        $html = '<span class="badge text-white bg-success">Aktif</span>';
         break;
-      case ConstantUtility::STATUS_APPROVED:
-        $html = '<span class="badge text-white bg-success">Disetujui</span>';
-        break;
-      case ConstantUtility::STATUS_REJECTED:
-        $html = '<span class="badge text-white bg-danger">Ditolak</span>';
-        $html .= '<button type="button" class="btn btn-sm btn-link" data-container="body"  onclick="show_desc('.$id.')">
-                  <i class="fa fa-file"></i>
-                </button>';
+      case '0':
+        $html = '<span class="badge text-white bg-danger">Tidak Aktif</span>';
         break;
       default:
         $html = '';

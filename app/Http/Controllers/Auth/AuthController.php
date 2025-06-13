@@ -54,6 +54,13 @@ class AuthController extends Controller
             ], 400);
         }
 
+        if($result->status == 0){
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_USER_ACCOUNT_BLOCKED
+            ], 400);
+        }
+
         $get_role = Role::find($result->role_id);
         if(!in_array($get_role->role, ['Admin', 'Pengguna'])){
             return response([
@@ -99,7 +106,6 @@ class AuthController extends Controller
             'email.unique' => 'Email sudah digunakan',
             'password.required' => 'Kolom Password tidak boleh kosong',
             'password.confirmed' => 'Kolom Password tidak sama',
-
         ];
         $request->validate($rules, $message);
 

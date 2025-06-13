@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('role')->nullable();
             $table->text('deskripsi')->nullable();
+            $table->string('status', 1)->default(1);
             $table->timestamps();
         });
     }

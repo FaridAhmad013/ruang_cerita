@@ -4,9 +4,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\RyunnaAuth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Manage\{UserController, KelolaDokumenController};
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\Manajamen\{RoleController, UserController};
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RedirectResetPassword;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,28 @@ Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/edit_profile', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
     Route::put('/profile/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.updatepassword');
+
+    Route::prefix('manajemen')->group(function(){
+        Route::resources([
+            'user' => UserController::class,
+            'role' => RoleController::class
+        ]);
+
+        Route::prefix('user')->group(function(){
+            Route::post('change_status/{id}', [UserController::class, 'change_status'])->name('user.change_status');
+        });
+
+        Route::prefix('role')->group(function(){
+            Route::post('change_status/{id}', [RoleController::class, 'change_status'])->name('role.change_status');
+        });
+    });
+
+    Route::prefix('datatable')->group(function(){
+        Route::post('user', [UserController::class, 'datatable'])->name('datatable.user');
+        Route::post('role', [RoleController::class, 'datatable'])->name('datatable.role');
+    });
+
+    Route::prefix('select2')->group(function(){
+        Route::get('role', [RoleController::class, 'select2'])->name('select2.role');
+    });
 });

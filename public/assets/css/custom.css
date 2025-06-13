@@ -413,7 +413,7 @@ body {
 }
 
 .bg-image-container {
-  background: url('./../img/theme/wallpaper-6.jpg') no-repeat center top;
+  background: url('./../img/theme/wallpaper-3.jpg') no-repeat center top;
   background-size: cover;
   position: relative;
 }
@@ -458,4 +458,9 @@ body {
     100%{
         transform:  rotate(-90deg);
     }
+}
+
+.page-item.active .page-link{
+    border-color: #f8bea6;
+    background-color: #f8bea6;
 }

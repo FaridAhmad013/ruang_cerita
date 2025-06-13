@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email', 50)->unique();
             $table->string('nama_depan', 50)->nullable();
             $table->string('nama_belakang', 50)->nullable();
-            $table->string('status', 1)->nullable();
+            $table->string('status', 1)->default(1);
             $table->integer('auth_attemp')->default(0);
             $table->string('role_id');
             $table->timestamps();

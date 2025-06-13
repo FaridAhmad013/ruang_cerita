@@ -8442,7 +8442,7 @@ a.close.disabled
 
 .bg-primary
 {
-    background-color: #65a30d !important;
+    background-color: #253D95 !important;
 }
 
 .header *{
@@ -8454,7 +8454,7 @@ a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus
 {
-    background-color: #5e72e4 !important;
+    background-color: #324cdd !important;
 }
 
 .bg-secondary
@@ -21827,7 +21827,7 @@ textarea[resize='horizontal']
     padding-right: 1rem;
     padding-left: 1rem;
     border-radius: 0.375rem;
-    background: #c9c9c9;
+    background: #bfb2ed;
     color: white;
     font-weight: bold;
 }

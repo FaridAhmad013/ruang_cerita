@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('rahasia'),
                 'email' => 'admin@gmail.com',
                 'nama_depan' => 'Admin',
-                'nama_belakang' => '(Segala Bisa)',
+                'nama_belakang' => '',
                 'status' => '1',
                 'role_id' => '1'
             ]);

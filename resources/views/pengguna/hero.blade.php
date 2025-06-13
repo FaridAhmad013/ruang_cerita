@@ -12,7 +12,7 @@
       <div class="text-white">
         <h1 class="mb-3 font-lora hero-title"></h1>
         <h2 class="mb-3 font-lora hero-subtitle"></h2>
-        <a data-mdb-ripple-init class="btn btn-default btn-lg" href="#!" role="button">Coba Sekarang</a>
+        <a data-mdb-ripple-init class="btn btn-default btn-lg" href="{{ route('dashboard.index')}}" role="button">Coba Sekarang</a>
       </div>
     </div>
   </div>
