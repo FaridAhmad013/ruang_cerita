@@ -6,6 +6,8 @@ use App\Http\Middleware\RyunnaAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Manajamen\{RoleController, UserController};
+use App\Http\Controllers\Master\KategoriPertanyaanController;
+use App\Http\Controllers\Master\PertanyaanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectResetPassword;
 
@@ -69,12 +71,22 @@ Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
         });
     });
 
+    Route::prefix('master')->group(function(){
+        Route::resources([
+            'kategori_pertanyaan' => KategoriPertanyaanController::class,
+            'pertanyaan' => PertanyaanController::class
+        ]);
+    });
+
     Route::prefix('datatable')->group(function(){
         Route::post('user', [UserController::class, 'datatable'])->name('datatable.user');
         Route::post('role', [RoleController::class, 'datatable'])->name('datatable.role');
+        Route::post('kategori_pertanyaan', [KategoriPertanyaanController::class, 'datatable'])->name('datatable.kategori_pertanyaan');
+        Route::post('pertanyaan', [PertanyaanController::class, 'datatable'])->name('datatable.pertanyaan');
     });
 
     Route::prefix('select2')->group(function(){
         Route::get('role', [RoleController::class, 'select2'])->name('select2.role');
+        Route::get('kategori_pertanyaan', [KategoriPertanyaanController::class, 'select2'])->name('select2.kategori_pertanyaan');
     });
 });

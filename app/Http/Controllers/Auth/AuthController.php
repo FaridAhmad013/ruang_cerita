@@ -45,9 +45,9 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $auth_attemp = intval($result->auth_attemp ?? 0) + 1;
+        $auth_attemp = intval($result->auth_attemp ?? 0);
         if(!Hash::check($request->password, $result->password)){
-            User::where('username', $request['username'])->update(['auth_attemp' => $auth_attemp]);
+            User::where('username', $request['username'])->update(['auth_attemp' => ($auth_attemp  + 1)]);
             return response([
                 'status' => false,
                 'message' => ResponseConstant::RM_INVALID_USERNAME_PASSWORD

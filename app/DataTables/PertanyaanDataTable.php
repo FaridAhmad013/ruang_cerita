@@ -2,10 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Helpers\AuthCommon;
-use App\Helpers\ConstantUtility;
-use App\Helpers\Util;
-use App\Models\User;
+use App\Models\Pertanyaan;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +11,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class PertanyaanDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -31,25 +28,17 @@ class UserDataTable extends DataTable
                 $html .= '<button onclick="edit('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Ubah"><i class="fas fa-pen"></i></button>';
                 $html .= '<button onclick="destroy('.$data->id.')" type="button" class="btn btn-sm btn-default" title="Hapus"><i class="fas fa-trash"></i></button>';
                 $html .= '</div>';
-
-                if ($data->auth_attemp > 2) {
-                    $html .= '<button onclick="unblock(' . $data->id . ')" type="button" class="btn btn-sm btn-danger ml-1" title="UNBLOCK">UNBLOCK</button>';
-                }
                 return $html;
             })
-            ->editColumn('username', function($item){
-                return '<a href="javascript:show('.$item->id.')">'.$item->username.'</a>';
+            ->editColumn('pertanyaan', function($item){
+                return '<a href="javascript:show('.$item->id.')">'.$item->pertanyaan.'</a>';
             })
-            ->addColumn('role', function ($item) {
-                $role = $item->role;
-                if ($role) {
-                    return $role->role;
+            ->addColumn('kategori_pertanyaan', function ($item) {
+                $kategori_pertanyaan = $item->kategori_pertanyaan;
+                if ($kategori_pertanyaan) {
+                    return $kategori_pertanyaan->kategori;
                 }
                 return '';
-            })
-            ->editColumn('status', function($item){
-                return '<label class="custom-toggle"><input type="checkbox" '. ($item->status == 1 ? 'checked': '') .' onchange="change_status('.$item->id.', this)"><span class="custom-toggle-slider rounded-circle"></span></label>';
-
             })
             ->editColumn('created_at', function ($data) {
                 if ($data->created_at) {
@@ -63,18 +52,18 @@ class UserDataTable extends DataTable
                 }
                 return '';
             })
-            ->rawColumns(['aksi', 'username', 'status']);
+            ->rawColumns(['aksi', 'pertanyaan']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Pertanyaan $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Pertanyaan $model): QueryBuilder
     {
-        return $model->newQuery()->with('role');
+        return $model->newQuery()->with('kategori_pertanyaan');
     }
 
     /**
@@ -92,12 +81,8 @@ class UserDataTable extends DataTable
                 ->width(60)
                 ->orderable(false)
                 ->searchable(false),
-            Column::make('username'),
-            Column::make('nama_depan'),
-            Column::make('nama_belakang'),
-            Column::make('email'),
-            Column::make('role'),
-            Column::make('status'),
+            Column::make('pertanyaan'),
+            Column::make('kategori_pertanyaan_id'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
@@ -110,6 +95,6 @@ class UserDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'User_' . date('YmdHis');
+        return 'Pertanyaan_' . date('YmdHis');
     }
 }
