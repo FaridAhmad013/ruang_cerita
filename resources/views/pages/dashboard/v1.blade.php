@@ -7,24 +7,31 @@
 <style>
   .mini-calendar {
     font-size: 10px; /* Ukuran font kecil */
-    max-width: 300px; /* Batasi lebar */
   }
 
   .mini-calendar .fc {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
+  .fc th{
+    font-size: 0.6rem !important;
+    padding: 2px !important;
+  }
   .mini-calendar .fc-toolbar-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .mini-calendar .fc-button {
     padding: 2px 6px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
   .mini-calendar .fc-daygrid-day-number {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 2px;
+  }
+
+  .mini-calendar .fc-daygrid-day-frame {
     padding: 2px;
   }
 </style>
@@ -51,7 +58,7 @@
     <div class="card card-new">
       <div class="card-body">
         <b> Kalender Progress</b>
-        <div id="kalender-wrap"></div>
+        <div id="kalender-wrap" class="mini-calendar"></div>
       </div>
     </div>
      <div class="card card-new">
@@ -76,7 +83,8 @@
     const calendarEl = document.getElementById('kalender-wrap')
     const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      height: 'auto',
+      height: 300,
+      width: 300,
       locale: 'id',
        events: [
         {
