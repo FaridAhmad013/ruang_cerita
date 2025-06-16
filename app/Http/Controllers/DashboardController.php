@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\GrafikJumlahUploadChart;
-use App\Charts\GrafikPengajuanDokumenChart;
 use App\Helpers\AuthCommon;
-use App\Helpers\ConstantUtility;
 use App\Helpers\ResponseConstant;
-use App\Helpers\Util;
-use App\Models\AauthUser;
-use App\Models\TBprDokumenSmki;
-use App\Models\LogActivitySmki;
-use ArielMejiaDev\LarapexCharts\LarapexChart;
+use App\Models\Pertanyaan;
+use App\Models\SesiJournal;
+use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -36,6 +30,138 @@ class DashboardController extends Controller
             $ucapan = "Selamat beristirahat, $nama_lengkap.";
         }
 
-        return view('pages.dashboard.v1', compact('role', 'ucapan'));
+        if($role->role == 'Admin'){
+            return view('pages.dashboard.admin', compact('role', 'ucapan'));
+        }
+
+        return view('pages.dashboard.pengguna', compact('role', 'ucapan'));
     }
+
+    public function get_total_pengguna(){
+        try {
+            $total = 0;
+
+            $total = User::count();
+            return response([
+                'status' => true,
+                'data' => [
+                    'total' => @$total ?? 0
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_INTERNAL_ERROR,
+                'error' => $th->getMessage()
+            ], 400);
+        }
+    }
+
+    public function get_total_pertanyaan(){
+        try {
+            $total = 0;
+
+            $total = Pertanyaan::count();
+            return response([
+                'status' => true,
+                'data' => [
+                    'total' => @$total ?? 0
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_INTERNAL_ERROR,
+                'error' => $th->getMessage()
+            ], 400);
+        }
+    }
+
+    public function get_total_entry_jurnal_hari_ini(){
+        try {
+            $total = 0;
+
+            // $total = Pertanyaan::count();
+            return response([
+                'status' => true,
+                'data' => [
+                    'total' => @$total ?? 0
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_INTERNAL_ERROR,
+                'error' => $th->getMessage()
+            ], 400);
+        }
+    }
+
+    public function get_total_pengguna_aktif(){
+        try {
+            $total = 0;
+
+            $total = User::whereMonth('last_login', Carbon::now()->month)->whereYear('last_login', Carbon::now()->year)->count();
+            return response([
+                'status' => true,
+                'data' => [
+                    'total' => @$total ?? 0
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            return response([
+                'status' => false,
+                'message' => ResponseConstant::RM_INTERNAL_ERROR,
+                'error' => $th->getMessage()
+            ], 400);
+        }
+    }
+
+    public function check_menulis_jurnal(){
+        $sudah_menulis_jurnal = false;
+        try {
+            $sesi_jurnal = SesiJournal::whereDate('tanggal', Carbon::now()->format('Y-m-d'))->where('user_id', AuthCommon::user()->id)->first();
+
+            $sudah_menulis_jurnal = $sesi_jurnal ? true : false;
+        } catch (\Throwable $th) {
+
+        }
+        return response([
+            'status' => true,
+            'data' => [
+                'sudah_menulis_jurnal' => @$sudah_menulis_jurnal,
+                'kesimpulan' => @$sesi_jurnal->kesimpulan_ai
+            ]
+        ]);
+    }
+
+    public function get_kalender_progress(){
+        $data = [];
+        try {
+            $data = SesiJournal::where('user_id', AuthCommon::user()->id)->where('status', 'SELESAI')->latest()->get();
+        } catch (\Throwable $th) {
+
+        }
+
+        return response([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
+
+    public function get_jejak_ceritamu(){
+        $data = [];
+        try {
+            $data = SesiJournal::where('user_id', AuthCommon::user()->id)->where('status', 'SELESAI')->latest()->get();
+        } catch (\Throwable $th) {
+
+        }
+
+        return response([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
+
+
 }

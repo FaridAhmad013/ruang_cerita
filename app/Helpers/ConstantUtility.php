@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Helpers;
 
 class ConstantUtility{
@@ -23,4 +22,6 @@ class ConstantUtility{
     const LOG_BERHASIL_LOGIN = 'BERHASIL LOGIN';
     const LOG_UPLOAD_DOKUMEN = 'UPLOAD DOKUMEN';
     const LOG_ACTIVATION_SMKI_ACCOUNT = 'AKUN SMKI TELAH DIAKTIVASI';
+
+    const THEME_PERTANYAAN_DEFAULT = 'Mengenal Diri Sendiri';
 }

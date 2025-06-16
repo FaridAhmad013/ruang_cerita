@@ -9,6 +9,7 @@ use App\Http\Controllers\Manajamen\{RoleController, UserController};
 use App\Http\Controllers\Master\KategoriPertanyaanController;
 use App\Http\Controllers\Master\PertanyaanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RuangCerita\ObrolanController;
 use App\Http\Middleware\RedirectResetPassword;
 
 /*
@@ -50,10 +51,23 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
 // Page
 Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/total_pengguna', [DashboardController::class, 'get_total_pengguna'])->name('dashboard.total_pengguna');
+    Route::get('/dashboard/total_pertanyaan', [DashboardController::class, 'get_total_pertanyaan'])->name('dashboard.total_pertanyaan');
+    Route::get('/dashboard/total_entry_jurnal_hari_ini', [DashboardController::class, 'get_total_entry_jurnal_hari_ini'])->name('dashboard.total_entry_jurnal_hari_ini');
+    Route::get('/dashboard/total_pengguna_aktif', [DashboardController::class, 'get_total_pengguna_aktif'])->name('dashboard.total_pengguna_aktif');
+
+    //pengguna
+    Route::get('/dashboard/check_menulis_jurnal', [DashboardController::class, 'check_menulis_jurnal'])->name('dashboard.check_menulis_jurnal');
+    Route::get('/dashboard/get_kalender_progress', [DashboardController::class, 'get_kalender_progress'])->name('dashboard.get_kalender_progress');
+    Route::get('/dashboard/get_jejak_ceritamu', [DashboardController::class, 'get_jejak_ceritamu'])->name('dashboard.get_jejak_ceritamu');
+
+
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/edit_profile', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
     Route::put('/profile/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.updatepassword');
+
 
     Route::prefix('manajemen')->group(function(){
         Route::resources([
@@ -76,6 +90,19 @@ Route::prefix('admin')->middleware([RyunnaAuth::class])->group(function () {
             'kategori_pertanyaan' => KategoriPertanyaanController::class,
             'pertanyaan' => PertanyaanController::class
         ]);
+    });
+
+    Route::prefix('ruang_cerita')->group(function(){
+       Route::get('mulai_sesi_journal', [ObrolanController::class, 'mulai_sesi_journal'])->name('ruang_cerita.mulai_sesi_journal');
+       Route::get('check_status_sesi_journal', [ObrolanController::class, 'check_status_sesi_journal'])->name('ruang_cerita.check_status_sesi_journal');
+       Route::get('get_pertanyaan_jawaban/{sesi_journal_id}', [ObrolanController::class, 'get_pertanyaan_jawaban'])->name('ruang_cerita.get_pertanyaan_jawaban');
+       Route::get('get_kesimpulan/{sesi_journal_id}', [ObrolanController::class, 'get_kesimpulan'])->name('ruang_cerita.get_kesimpulan');
+       Route::get('generate_kesimpulan/{sesi_journal_id}', [ObrolanController::class, 'generate_kesimpulan'])->name('ruang_cerita.generate_kesimpulan');
+       Route::prefix('obrolan')->group(function(){
+            Route::get('/', [ObrolanController::class, 'halaman_obrolan'])->name('ruang_cerita.obrolan.halaman_obrolan');
+            Route::post('/kirim_pesan', [ObrolanController::class, 'kirim_pesan'])->name('ruang_cerita.obrolan.kirim_pesan');
+       });
+
     });
 
     Route::prefix('datatable')->group(function(){

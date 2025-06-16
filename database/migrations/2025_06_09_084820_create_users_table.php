@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status', 1)->default(1);
             $table->integer('auth_attemp')->default(0);
             $table->string('role_id');
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }
