@@ -178,9 +178,8 @@
       sesi_jurnal_id = res?.id
       $('#sesi_jurnal_id').val(sesi_jurnal_id)
 
+      check_status_sesi_journal()
       $('#message_loading').remove()
-      $('.wrap-input-jawaban').show()
-      get_pertanyaan_jawaban(sesi_jurnal_id)
     }).fail((xhr) => {
       $('#message_loading').remove()
       $('.wrap-input-jawaban').hide()
@@ -199,13 +198,13 @@
 
   function check_status_sesi_journal(){
     $.get(_url.check_status_sesi_journal).done((res) => {
-      generate_mine_message('Mulai Jurnal Hari Ini')
       if(res.data.status_sesi_journal != 'BELUM_DIMULAI'){
         sesi_jurnal_id = res?.data?.id
+
+        generate_mine_message('Mulai Jurnal Hari Ini')
+
+        get_pertanyaan_jawaban(sesi_jurnal_id, () => {})
         $('#sesi_jurnal_id').val(sesi_jurnal_id)
-        get_pertanyaan_jawaban(sesi_jurnal_id, () => {
-        //   $('#message_loading').remove()
-        })
       }
     }).fail((xhr) => {
       Ryuna.noty('error', '', xhr?.responseJSON?.message ?? 'Terjadi Kesalahan Internal')
@@ -226,7 +225,6 @@
         }
 
         if(jawaban[i]){
-
           generate_mine_message(jawaban[i]?.jawaban_user ?? '')
         }
       }
