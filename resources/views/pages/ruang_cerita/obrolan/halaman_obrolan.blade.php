@@ -14,7 +14,7 @@
     /* border: solid 1px #EEE; */
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
     /* padding: 10px; */
@@ -314,7 +314,6 @@
       type: 'POST',
     }).done((res) => {
       if(res?.status == true){
-        generate_mine_message(res?.data?.jawaban_user)
         $('#jawaban_user').val('')
         get_pertanyaan_jawaban(res?.data?.sesi_jurnal_id, () => {
           $('#message_loading').remove()

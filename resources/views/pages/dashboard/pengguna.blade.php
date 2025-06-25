@@ -66,13 +66,6 @@
         <div id="kalender-wrap" class="mini-calendar"></div>
       </div>
     </div>
-     <div class="card card-new card-jejak-ceritamu">
-      <div class="card-body">
-        <b>Jejak Ceritamu</b>
-        <br>
-        <div id="jejak-ceritamu"></div>
-      </div>
-    </div>
   </div>
 </div>
 

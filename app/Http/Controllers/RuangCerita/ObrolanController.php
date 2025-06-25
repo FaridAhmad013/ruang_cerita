@@ -12,6 +12,7 @@ use App\Models\SesiJournal;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ObrolanController extends Controller
 {
@@ -194,13 +195,35 @@ class ObrolanController extends Controller
     public function generate_kesimpulan($sesi_jurnal_id){
         $result = GeminiUtility::buatKesimpulanSesi($sesi_jurnal_id);
         try {
+            // $jsonBlock = '';
+            // if (preg_match('/\{.*\}/s', $result, $matches)) {
+            //     $jsonBlock = $matches[0];
+            // } else {
+            //     Log::warning('Tidak ditemukan blok JSON dalam respons Gemini untuk sesi #' . $sesi_jurnal_id, ['response' => $result]);
+            //     $jsonBlock = $result;
+            // }
+
+            // $hasilJson = json_decode($jsonBlock, true);
+
+            // if (json_last_error() !== JSON_ERROR_NONE || !isset($hasilJson['kesimpulan_narasi']) || !isset($hasilJson['label_mood'])) {
+            //     Log::warning('Gagal mem-parsing JSON dari Gemini untuk sesi #' . $sesi_jurnal_id, ['response' => $result]);
+            //     $hasilJson = [
+            //         'kesimpulan_narasi' => $result,
+            //         'label_mood' => 'Reflektif'
+            //     ];
+            // }
             SesiJournal::where('id', $sesi_jurnal_id)->update([
+                // 'kesimpulan_ai' => $hasilJson['kesimpulan_narasi'],
+                // 'label_mood' => $hasilJson['label_mood'],
                 'kesimpulan_ai' => $result,
+                'label_mood' => '',
                 'status' => 'SELESAI'
             ]);
             return response([
                 'status' => true,
+                // 'data' => ['kesimpulan' => $hasilJson['kesimpulan_narasi']],
                 'data' => ['kesimpulan' => $result],
+
                 'message' => 'Sukses'
             ]);
         } catch (\Throwable $th) {

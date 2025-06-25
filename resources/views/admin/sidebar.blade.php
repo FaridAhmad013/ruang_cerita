@@ -53,7 +53,7 @@
             ])
             ->start_group()
             ->item('Obrolan', 'fas fa-comments', 'admin/ruang_cerita/obrolan', Request::is('admin/ruang_cerita/obrolan'), ['Pengguna'])
-            ->item('Riwayat Obrolan', 'fas fa-history', 'admin/ruang_cerita/riwayat_obrolan', Request::is('admin/ruang_cerita/riwayat_obrolan'), ['Pengguna'])
+            // ->item('Riwayat Obrolan', 'fas fa-history', 'admin/ruang_cerita/riwayat_obrolan', Request::is('admin/ruang_cerita/riwayat_obrolan'), ['Pengguna'])
             ->end_group();
 
         $menu = $obj_menu->to_html();

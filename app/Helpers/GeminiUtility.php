@@ -105,8 +105,8 @@ class GeminiUtility{
         {$daftarPertanyaanString}
         PROMPT;
 
+        $response = Gemini::generativeModel('gemini-2.0-flash')->generateContent($prompt);
         try {
-            $response = Gemini::generativeModel('gemini-2.0-flash')->generateContent($prompt);
 
             // Parsing respons teks menjadi array.
             // Gemini biasanya akan mengembalikan format "1. Teks\n2. Teks\n...".
